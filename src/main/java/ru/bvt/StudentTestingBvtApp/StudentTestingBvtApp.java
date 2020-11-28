@@ -1,13 +1,15 @@
-package com.example.StudentTestingBvtApp;
+package ru.bvt.StudentTestingBvtApp;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class StudentTestingBvtAppApplication {
+public class StudentTestingBvtApp {
 
 	public static void main(String[] args) {
+
 		SpringApplication.run(StudentTestingBvtAppApplication.class, args);
+		System.out.println("StartTest");
 	}
 
 }
