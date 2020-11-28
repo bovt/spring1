@@ -1,2 +1,4 @@
-package ru.bvt.StudentTestingBvtApp.dao;public class QuestionPackageDao {
+package ru.bvt.StudentTestingBvtApp.dao;
+
+public interface QuestionsPackageDao {
 }

@@ -8,7 +8,7 @@ public class StudentTestingBvtApp {
 
 	public static void main(String[] args) {
 
-		SpringApplication.run(StudentTestingBvtAppApplication.class, args);
+		SpringApplication.run(StudentTestingBvtApp.class, args);
 		System.out.println("StartTest");
 	}
 

@@ -1,2 +1,4 @@
-package ru.bvt.StudentTestingBvtApp.service;public interface StudentTestingService {
+package ru.bvt.StudentTestingBvtApp.service;
+
+public interface StudentTestingService {
 }

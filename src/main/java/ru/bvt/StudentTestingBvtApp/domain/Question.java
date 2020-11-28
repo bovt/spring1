@@ -1,2 +1,4 @@
-package ru.bvt.StudentTestingBvtApp.domain;public class Question {
+package ru.bvt.StudentTestingBvtApp.domain;
+
+public class Question {
 }
