@@ -18,6 +18,7 @@
 		<java.version>11</java.version>
 	</properties>
 
+	<!--
 	<dependencies>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -39,5 +40,15 @@
 			</plugin>
 		</plugins>
 	</build>
+-->
 
+	<dependencies>
+		<!-- Это зависимость spring-context,
+             содержит базовую функциональность IoC -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-context</artifactId>
+			<version>5.2.8.RELEASE</version>
+		</dependency>
+	</dependencies>
 </project>
