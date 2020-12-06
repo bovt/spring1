@@ -1,4 +1,4 @@
-package ru.bvt.StudentTestingBvtApp.domain;
+package ru.bvt.studenttestingapp.domain;
 
 import java.util.ArrayList;
 
