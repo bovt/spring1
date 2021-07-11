@@ -1,26 +1,26 @@
 package ru.bvt.studenttestingapp.service;
 
+import org.springframework.stereotype.Service;
+import ru.bvt.studenttestingapp.config.AppProps;
 import ru.bvt.studenttestingapp.dao.QuestionsPackageDao;
 import ru.bvt.studenttestingapp.domain.QuestionsPackage;
 
+@Service
 public class StudentTestingServiceCSVEdition implements StudentTestingService {
 
     private int currentQuestionID = 0;
-    private final QuestionsPackageDao dao;
 
-    public StudentTestingServiceCSVEdition(QuestionsPackageDao dao) {
+    private QuestionsPackageDao dao;
+    private AppProps props;
+
+    public StudentTestingServiceCSVEdition(AppProps props, QuestionsPackageDao dao) {
+        this.props = props;
         this.dao = dao;
-
-        // !!!!! как то нужно сообщить расположение csv
-        //        this.dao = new TestFileDao("test.csv");
-    }
-
-    public void startTest() {
-        dao.init();
     }
 
     public String getNextQuestion() {
         QuestionsPackage questionsPackage = dao.getQuestionsPackage();
+
 
         currentQuestionID++;
         if (questionsPackage.questions.size() >= currentQuestionID) {
@@ -28,6 +28,8 @@ public class StudentTestingServiceCSVEdition implements StudentTestingService {
         } else {
             return null;
         }
+
+
     }
 
     public String getAvailableAnswersForCurrentQuestion() {
@@ -37,15 +39,5 @@ public class StudentTestingServiceCSVEdition implements StudentTestingService {
     public String getCorrectAnswerForCurrentQuestion() {
         return dao.getQuestionsPackage().questions.get(currentQuestionID - 1).getCorrectAnswer();
     }
-
-
-    public void putAnswer() {
-        System.out.println("SVC: PutAnswer");
-    }
-
-    public void getLastTestResults() {
-        System.out.println("SVC: GetLastTestResults");
-    }
-
 
 }

@@ -6,14 +6,12 @@ public class Question {
     private String text;
     private String availableAnswers;
     private String correctAnswer;
-    private String givenAnswer;
 
     public Question(int id, String text, String availableAnswers, String correctAnswer) {
         this.id = id;
         this.text = text;
         this.availableAnswers = availableAnswers;
         this.correctAnswer = correctAnswer;
-        this.givenAnswer = null;
     }
 
     public int getId() {
@@ -32,10 +30,6 @@ public class Question {
         return correctAnswer;
     }
 
-    public String getGivenAnswer() {
-        return givenAnswer;
-    }
-
     void setId(int id) {
         this.id = id;
     }
@@ -50,10 +44,6 @@ public class Question {
 
     void setCorrectAnswer(String correctAnswer) {
         this.correctAnswer = correctAnswer;
-    }
-
-    void setGivenAnswer(String givenAnswer) {
-        this.givenAnswer = givenAnswer;
     }
 
 }

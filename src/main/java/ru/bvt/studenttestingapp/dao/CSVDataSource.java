@@ -14,8 +14,7 @@ public class CSVDataSource {
 
         try {
             file = new File(classLoader.getResource(filename).getFile());
-        }
-        catch (NullPointerException e) {
+        } catch (NullPointerException e) {
             e.printStackTrace();
         }
     }

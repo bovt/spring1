@@ -1,7 +1,6 @@
 package ru.bvt.studenttestingapp.service;
 
 public interface StudentTestingService {
-    void startTest();
 
     String getNextQuestion();
 
@@ -9,7 +8,4 @@ public interface StudentTestingService {
 
     String getCorrectAnswerForCurrentQuestion();
 
-    void putAnswer();
-
-    void getLastTestResults();
 }

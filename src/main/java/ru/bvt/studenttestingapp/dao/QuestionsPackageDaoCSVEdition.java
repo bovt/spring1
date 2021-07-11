@@ -1,23 +1,19 @@
 package ru.bvt.studenttestingapp.dao;
 
+import org.springframework.stereotype.Component;
+import ru.bvt.studenttestingapp.config.AppProps;
+import ru.bvt.studenttestingapp.config.AppPropsSimple;
 import ru.bvt.studenttestingapp.domain.Question;
 import ru.bvt.studenttestingapp.domain.QuestionsPackage;
 
+@Component
 public class QuestionsPackageDaoCSVEdition implements QuestionsPackageDao {
 
     private QuestionsPackage questionsPackage;
     private CSVDataSource csvDataSource;
 
-    public QuestionsPackageDaoCSVEdition(String filename) {
-        csvDataSource = new CSVDataSource(filename);
-    }
-
-    public QuestionsPackage getQuestionsPackage() {
-        return this.questionsPackage;
-    }
-
-    public void init() {
-
+    public QuestionsPackageDaoCSVEdition(AppProps props) {
+        csvDataSource = new CSVDataSource(props.getCsvFilename());
         questionsPackage = new QuestionsPackage();
 
         String[] tempStringArray;
@@ -31,7 +27,10 @@ public class QuestionsPackageDaoCSVEdition implements QuestionsPackageDao {
             i++;
             tempString = csvDataSource.getRow(i);
         }
+    }
 
+    public QuestionsPackage getQuestionsPackage() {
+        return this.questionsPackage;
     }
 
 

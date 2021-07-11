@@ -1,38 +1,23 @@
 package ru.bvt.studenttestingapp;
 
-//import org.springframework.boot.SpringApplication;
-//import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-import org.springframework.context.support.ClassPathXmlApplicationContext;
-import ru.bvt.studenttestingapp.service.StudentTestingService;
+import org.springframework.boot.context.properties.EnableConfigurationProperties;
+import org.springframework.context.ApplicationContext;
+import ru.bvt.studenttestingapp.config.AppPropsSimple;
+import ru.bvt.studenttestingapp.service.ManagerServiceCSVEdition;
 
-//@SpringBootApplication
+@SpringBootApplication
+@EnableConfigurationProperties(AppPropsSimple.class)
 public class Main {
 
     public static void main(String[] args) {
 
-//		SpringApplication.run(StudentTestingBvtApp.class, args);
+        ApplicationContext context = SpringApplication.run(Main.class, args);
 
-        ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("/spring-context.xml");
-        StudentTestingService testService = context.getBean(StudentTestingService.class);
-
-        int i = 0;
-        String outStr;
-
-        testService.startTest();
-
-        outStr = testService.getNextQuestion();
-        while (outStr != null) {
-            System.out.println("Question: " + outStr);
-            System.out.println("Available answers: " + testService.getAvailableAnswersForCurrentQuestion());
-
-            outStr = testService.getNextQuestion();
-            //testService.PutAnswer();
-        }
-
-        // testService.GetLastTestResults();
-
+        var manager = context.getBean(ManagerServiceCSVEdition.class);
+        manager.run();
 
     }
-
 }
