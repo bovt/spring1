@@ -11,19 +11,15 @@ import ru.bvt.studenttestingapp.config.AppPropsForTests;
 import ru.bvt.studenttestingapp.config.AppPropsSimple;
 import ru.bvt.studenttestingapp.dao.QuestionsPackageDao;
 import ru.bvt.studenttestingapp.dao.QuestionsPackageDaoCSVEdition;
+import ru.bvt.studenttestingapp.domain.Question;
 import ru.bvt.studenttestingapp.domain.QuestionsPackage;
-import ru.bvt.studenttestingapp.service.StudentTestingService;
-import ru.bvt.studenttestingapp.service.StudentTestingServiceCSVEdition;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
 @ExtendWith(MockitoExtension.class)
 @EnableConfigurationProperties(AppPropsSimple.class)
-@DisplayName("Сервис StudentTestingServiceCSVEdition должен ")
-public class StudentTestingServiceCSVEditionTests {
-
-    @Mock
-    private StudentTestingService stappService;
+@DisplayName("Сервис QuestionsPackageDaoCSVEdition должен ")
+public class QuestionsPackageDaoCSVEditionTests {
 
     @Mock
     private QuestionsPackageDao stappDao;
@@ -33,30 +29,24 @@ public class StudentTestingServiceCSVEditionTests {
     void setUp() {
         props = new AppPropsForTests();
         stappDao = new QuestionsPackageDaoCSVEdition(props);
-        stappService = new StudentTestingServiceCSVEdition(props, stappDao);
     }
 
     @Test
-    @DisplayName(" возвращать непустую строку в методе getNextQuestion")
+    @DisplayName(" возвращать в getQuestionsPackage сущности с непустыми значениями полей")
     void getNextQuestionShouldReturnNonEmptyString() {
-        String outStr = stappService.getNextQuestion();
-        assertThat(outStr)
-                .isNotNull();
-        assertThat(outStr.length() == 0)
-                .isFalse();
-    }
-
-    @Test
-    @DisplayName(" возвращать в getNextQuestion столько вопросов сколько строк в dao")
-    void getNextQuestionShouldReturnQuestionsForAllDAORows() {
-        Integer questionsCount = 0;
         QuestionsPackage questionsPackage = stappDao.getQuestionsPackage();
 
-        while (stappService.getNextQuestion() != null) {
-            questionsCount += 1;
-        }
-        assertThat(questionsCount)
-                .isEqualTo(questionsPackage.questions.size());
-    }
+        Integer checker = 1;
 
+        for (int i = 0; i < questionsPackage.questions.size(); i++) {
+            Question question = questionsPackage.questions.get(i);
+            checker = (checker
+                    * question.getText().length()
+                    * question.getCorrectAnswer().length()
+                    * question.getAvailableAnswers().length() > 0) ? 1 : 0;
+        }
+
+        assertThat(checker)
+                .isEqualTo(1);
+    }
 }

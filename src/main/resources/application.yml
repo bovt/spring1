@@ -1,0 +1,3 @@
+stapp:
+    csvFilenamePrefix: test_
+    locale: ru
